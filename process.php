@@ -26,7 +26,8 @@ $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('assets/template/t
 	$templateProcessor->setValue($fields, $data);
 //--------------------------------------------------------------------
 //saving report to reports folder
-$templateProcessor->saveAs('reports/'.$ename.'.docx');
-echo $ename."'s report has been saved successfully<br>";
+header("Content-Disposition: attachment; filename=report.docx");
+$templateProcessor->saveAs('php://output');
 //--------------------------------------------------------------------
+
 ?>
