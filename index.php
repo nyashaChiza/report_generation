@@ -16,8 +16,8 @@
 	  <br><br>
         <div class="col-md-8 mx-auto bg-light" >
 		<br>
-        <form action = 'process.php' method = 'POST'>
-          <div class="form-floating col-md-10 mx-auto mb-3">
+        <form action = 'process.php' enctype='multipart/form-data' method = 'POST'>
+	  <div class="form-floating col-md-10 mx-auto mb-3">
             <input type="text" required name='ename' class="form-control" id="floatingInput" placeholder="1. Employer's Name">
             <label for="floatingInput">1. Employer's Name</label>
           </div>
@@ -66,7 +66,12 @@
             <input type="tel" required name= 'cell' class="form-control" id="floatingPassword" placeholder="Cell number">
             <label for="floatingPassword">11. Cell number</label>
           </div>
-		  
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <label for="floatingInput">12. Excel File</label>
+		  <br><div class="form-floating col-md-10 mx-auto mb-3">
+            <input type="file" required name='file' class="form-control" id="floatingInput" placeholder="1. Excel File">
+            
+          </div>      
+
 		   <div class="form-floating col-md-10 mx-auto mb-3">
             <button type="submit" class="btn btn-primary">Download Report</button>
           </div>
