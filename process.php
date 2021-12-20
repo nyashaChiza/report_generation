@@ -201,24 +201,24 @@ $count = $value1[0]['totalRows'];
 $filename = $filename[0];
 //collecting the data for part B of the report by calling the getvalues custom function
 
-$data1 = array(getValues($filename,'tr1'), getValues($filename,'tr2'), getValues($filename,'tr3'), getValues($filename,'tr4'));
-$data2 = array(getValues($filename,'count'));
-$data3 = array(getValues($filename,'gp1'), getValues($filename,'gp2'), getValues($filename,'gp3'), getValues($filename,'gp4'));
-$data4 = array(getValues($filename,'al1'), getValues($filename,'al2'), getValues($filename,'al3'), getValues($filename,'al4'));
-$data5 = array(getValues($filename,'tt1'), getValues($filename,'tt2'), getValues($filename,'tt3'), getValues($filename,'tt4'));
-$fields1 = array('tr1', 'tr2', 'tr3', 'tr4');
-$fields2 = array('ne1');
-$fields3 = array('gp1', 'gp2', 'gp3', 'gp4');
-$fields4 = array('al1', 'al2', 'al3', 'al4');
-$fields5 = array('tt1', 'tt2', 'tt3', 'tt4');
+//$data1 = array(getValues($filename,'tr1'), getValues($filename,'tr2'), getValues($filename,'tr3'), getValues($filename,'tr4'));
+//$data2 = array(getValues($filename,'count'));
+//$data3 = array(getValues($filename,'gp1'), getValues($filename,'gp2'), getValues($filename,'gp3'), getValues($filename,'gp4'));
+//$data4 = array(getValues($filename,'al1'), getValues($filename,'al2'), getValues($filename,'al3'), getValues($filename,'al4'));
+//$data5 = array(getValues($filename,'tt1'), getValues($filename,'tt2'), getValues($filename,'tt3'), getValues($filename,'tt4'));
+//$fields1 = array('tr1', 'tr2', 'tr3', 'tr4');
+//$fields2 = array('ne1');
+//$fields3 = array('gp1', 'gp2', 'gp3', 'gp4');
+//$fields4 = array('al1', 'al2', 'al3', 'al4');
+//$fields5 = array('tt1', 'tt2', 'tt3', 'tt4');
 
 //writing the data collected onto the word template
 
-$templateProcessor->setValue($fields1, $data1);
-$templateProcessor->setValue($fields2, $data2);
-$templateProcessor->setValue($fields3, $data3);
-$templateProcessor->setValue($fields4, $data4);
-$templateProcessor->setValue($fields5, $data5);
+//$templateProcessor->setValue($fields1, $data1);
+//$templateProcessor->setValue($fields2, $data2);
+//$templateProcessor->setValue($fields3, $data3);
+//$templateProcessor->setValue($fields4, $data4);
+//$templateProcessor->setValue($fields5, $data5);
 
 //--------------------------------------------------------------------
 
