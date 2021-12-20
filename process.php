@@ -199,7 +199,7 @@ $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 $value1 =  $reader->listWorksheetInfo($filename[0]);
 $count = $value1[0]['totalRows'];
 $filename = $filename[0];
-//collecting the data for part B of the report by calling the getvalues custom function
+//collecting the data for part B of the report by calling the getvalues() custom function
 
 //$data1 = array(getValues($filename,'tr1'), getValues($filename,'tr2'), getValues($filename,'tr3'), getValues($filename,'tr4'));
 //$data2 = array(getValues($filename,'count'));
