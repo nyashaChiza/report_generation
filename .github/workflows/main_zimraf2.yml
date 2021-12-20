@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'ZimraF2'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A8FED47791BB4056B2A6C5C7EA43A7CD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A58C2ACA293943BC8F58C7CC55EA5627 }}
           package: .
