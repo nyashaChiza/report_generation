@@ -1,40 +1,5 @@
 <?php
 session_start();
-require 'vendor/autoload.php';
-?>
-<html>
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title></title>
-      <meta name="description" content="">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-     
-   </head>
-   <body>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <div class=" mx-auto">
-   <div class="spinner-border mx-auto" style="width: 9rem; height: 9rem;" role="status">
-	<span class="sr-only"></span>
-		</div>
-<div class="spinner-border mx-auto" style="width: 9rem; height: 9rem;" role="status">
-	<span class="sr-only"></span>
-		</div>
-<div class="spinner-border mx-auto" style="width: 9rem; height: 9rem;" role="status">
-	<span class="sr-only"></span>
-		</div>
-		</div>
-    <script src="" async defer></script>
-   </body>
-</html>
-<?php
 //--------------------------------------------------------------------
 
 //OBJECTIVES
@@ -60,36 +25,42 @@ $cell = $_POST['cell'];
 $file = $_FILES['file'];
 
 //--------------------------------------------------------------------
+//initializing the requirements for the phpecel package *dont worry about understanding this part
+ 
+require 'vendor/autoload.php';
+
+//--------------------------------------------------------------------
 //a costom function that takes the excel file as input and stores it on the server, it returns path to the file and an error message if available 
 
 function handleFile($file){
-$target_file = 0;
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($file["name"]);
 $uploadOk = 1;
 $msg = '';
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-array_map('unlink', glob($target_file)); 
+
 
 // Check if file already exists
 if (file_exists($target_file)) {
-  $msg = "file upload error, please try again.";
+  $msg = "Sorry, there was an error uploading your file, please try again.";
   $uploadOk = 0;
 }
 
 // Allow certain file formats
 if($imageFileType != "xlsx" ) {
   $msg = "Sorry, only excel files are allowed.";
+  echo 'File Extension: '.$imageFileType;
   $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
+ 
 return array(0, $msg);
 // if everything is ok, try to upload file
 }
 else{
   if (move_uploaded_file($file["tmp_name"], $target_file)) {
-	$msg = $file["name"].' was uploaded';
+	$msg = 'file was uploaded';
 	return array($target_file, $msg);
   } else {
     $msg = "Sorry, there was an error uploading your file.";
@@ -210,11 +181,6 @@ else{
 //initialising the phpword template processor
 
 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('assets/template/temp.docx');
-$filename = handleFile($file);
-if($filename[0] != 0){
-	$_SESSION['msg'] = $filename[1];
-//	echo"<script type='text/javascript'>location.href = '/';</script>";
-}
 
 //--------------------------------------------------------------------
 //fill report details part A
@@ -227,12 +193,17 @@ $fields = array('ename', 'tname', 'btnumber', 'paye', 'tin', 'address', 'postal'
 
 $templateProcessor->setValue($fields, $data);
 //--------------------------------------------------------------------
-
+if(handleFile($file)[0] == 0){
+	$_SESSION['msg'] = handleFile($file)[1];
+	
+	echo"<script type='text/javascript'>location.href = '/';</script>";
+}
+$filename = handleFile($file)[0];
 //finding the total number of rows on the excel file to determine the number of employees
-$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-$value1 =  $reader->listWorksheetInfo($filename[0]);
+
+$value1 =  $reader->listWorksheetInfo($filename);
 $count = $value1[0]['totalRows'];
-$filename = $filename[0];
+
 //collecting the data for part B of the report by calling the getvalues custom function
 
 $data1 = array(getValues($filename,'tr1'), getValues($filename,'tr2'), getValues($filename,'tr3'), getValues($filename,'tr4'));
@@ -261,10 +232,9 @@ $templateProcessor->setValue($fields5, $data5);
 //header("Content-Disposition: attachment; filename=report.docx");
 //$templateProcessor->saveAs('php://output');
 $_SESSION['download'] = 'reports/'.$ename.'.docx';
+echo $_SESSION['download']; 
 $templateProcessor->saveAs('reports/'.$ename.'.docx');
-echo"SWITCH TO DOWNLOAD ";
-echo"<script type='text/javascript'>location.href ='final.php/';</script>";
-
+echo"<script type='text/javascript'>location.href = 'final.php';</script>";
 //--------------------------------------------------------------------
 
 ?>
