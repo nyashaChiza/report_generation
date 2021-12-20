@@ -224,12 +224,12 @@ $filename = $filename[0];
 
 //saving report to reports folder on the server
 
-//header("Content-Disposition: attachment; filename=report.docx");
-//$templateProcessor->saveAs('php://output');
+header("Content-Disposition: attachment; filename=report.docx");
+$templateProcessor->saveAs('php://output');
 $_SESSION['download'] = 'reports/'.$ename.'.docx';
 $templateProcessor->saveAs('reports/'.$ename.'.docx');
 
-echo"<script type='text/javascript'>location.href ='final.php/';</script>";
+//echo"<script type='text/javascript'>location.href ='final.php/';</script>";
 
 //--------------------------------------------------------------------
 
