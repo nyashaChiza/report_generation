@@ -223,16 +223,16 @@ $filename = $filename[0];
 //--------------------------------------------------------------------
 
 //saving report to reports folder on the server
-header('Content-Description: File Transfer');
-header('Content-Type: application/octet-stream');
-header("Cache-Control: no-cache, must-revalidate");
-header("Expires: 0");
-header("Content-Disposition: attachment; filename=report.docx");
-$templateProcessor->saveAs('php://output');
+//header('Content-Description: File Transfer');
+//header('Content-Type: application/octet-stream');
+//header("Cache-Control: no-cache, must-revalidate");
+//header("Expires: 0");
+//header("Content-Disposition: attachment; filename=report.docx");
+//$templateProcessor->saveAs('php://output');
 $_SESSION['download'] = 'reports/'.$ename.'.docx';
 $templateProcessor->saveAs('reports/'.$ename.'.docx');
 
-//echo"<script type='text/javascript'>location.href ='final.php/';</script>";
+echo"<script type='text/javascript'>location.href ='final.php/';</script>";
 
 //--------------------------------------------------------------------
 
